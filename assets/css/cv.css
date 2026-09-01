@@ -42,6 +42,7 @@
   bottom: -100px; top: auto;      /* visible feet land on the divider (PNG has transparent bottom) */
   height: clamp(340px, 32vw, 450px); width: auto; max-width: 100%;
 }
+.cv-photo-m { display: none; }   /* mobile-only photo (shown inside Contacts on phones) */
 
 /* Divider hugs the figure's feet; equal air (= card padding) below it to the body */
 .cv-rule { position: relative; z-index: 0; border: 0; border-top: 1px solid var(--line);
@@ -170,11 +171,12 @@
   .cv-photo { height: clamp(300px, 42vw, 400px); bottom: -80px; }
 }
 @media (max-width: 560px) {
-  .cv-head { min-height: 0; display: flex; flex-direction: column; }
+  /* compact text-only header; the photo moves into the Contacts block (right) */
+  .cv-head { min-height: 0; display: block; }
   .cv-head__text { padding-right: 0; transform: none; }
-  /* photo drops below the text, near the contacts, centered; header reads evenly */
-  .cv-photo { position: static; order: 2; top: auto; bottom: auto;
-    height: auto; width: clamp(180px, 56%, 240px); margin: 1.3rem auto 0; }
+  .cv-photo { display: none; }
+  .cv-side .side-block:first-child { position: relative; padding-right: 150px; }
+  .cv-photo-m { display: block; position: absolute; top: 0; right: 0; width: 134px; height: auto; }
 }
 
 @media print {
