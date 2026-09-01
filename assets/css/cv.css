@@ -175,8 +175,9 @@
   .cv-head { min-height: 0; display: block; }
   .cv-head__text { padding-right: 0; transform: none; }
   .cv-photo { display: none; }
-  .cv-side .side-block:first-child { position: relative; padding-right: 150px; }
-  .cv-photo-m { display: block; position: absolute; top: 0; right: 0; width: 134px; height: auto; }
+  .cv-side .side-block:first-child { position: relative; padding-right: clamp(140px, 42vw, 190px); }
+  .cv-photo-m { display: block; position: absolute; top: -.4rem; right: -.6rem; width: clamp(150px, 44vw, 200px); height: auto; }
+  .cv-contacts .item a, .cv-contacts .item span.v { font-size: .88rem; }
 }
 
 @media print {
