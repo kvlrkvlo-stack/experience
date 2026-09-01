@@ -10,19 +10,21 @@ Runs directly on GitHub Pages.
 
 | File | Purpose | URL |
 | --- | --- | --- |
-| `index.html` | English CV (home) | `/experience/` |
-| `cv_ru.html` | Russian CV | `/experience/cv_ru.html` |
-| `portfolio_en.html` | English portfolio | `/experience/portfolio_en.html` |
+| `index.html` | Home — redirects to the Russian CV | `/experience/` |
+| `cv_ru.html` | Russian CV (default) | `/experience/cv_ru.html` |
+| `cv_en.html` | English CV | `/experience/cv_en.html` |
 | `portfolio_ru.html` | Russian portfolio | `/experience/portfolio_ru.html` |
+| `portfolio_en.html` | English portfolio | `/experience/portfolio_en.html` |
 
 ## Structure
 
 ```
 experience/
-├── index.html            EN CV
-├── cv_ru.html            RU CV
-├── portfolio_en.html     EN portfolio
+├── index.html            Home — redirects to cv_ru.html
+├── cv_ru.html            RU CV (default)
+├── cv_en.html            EN CV
 ├── portfolio_ru.html     RU portfolio
+├── portfolio_en.html     EN portfolio
 ├── .nojekyll             disable Jekyll processing on Pages
 ├── README.md
 └── assets/
