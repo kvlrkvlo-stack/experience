@@ -170,9 +170,11 @@
   .cv-photo { height: clamp(300px, 42vw, 400px); bottom: -80px; }
 }
 @media (max-width: 560px) {
-  .cv-head { min-height: 0; display: block; }
+  .cv-head { min-height: 0; display: flex; flex-direction: column; }
   .cv-head__text { padding-right: 0; transform: none; }
-  .cv-photo { position: static; height: auto; width: 170px; margin: 0 0 1rem auto; bottom: auto; }
+  /* photo drops below the text, near the contacts, centered; header reads evenly */
+  .cv-photo { position: static; order: 2; top: auto; bottom: auto;
+    height: auto; width: clamp(180px, 56%, 240px); margin: 1.3rem auto 0; }
 }
 
 @media print {
