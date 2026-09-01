@@ -1,0 +1,188 @@
+/* ==========================================================================
+   cv.css — CV page: top row, résumé card, sidebar + main, timeline
+   ========================================================================== */
+
+/* --- Page top row (button left, language right) --------------------------- */
+.cv-topbar { padding: clamp(1rem, 3vw, 1.8rem) 0 0; }
+.cv-topbar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+/* .lang-switch + .theme-toggle styles are shared from base.css */
+
+/* --- Résumé card ---------------------------------------------------------- */
+.cv-card {
+  position: relative;                 /* anchor for the cut-out photo */
+  overflow: visible;
+  margin: clamp(1rem, 3vw, 1.8rem) 0 0;
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: clamp(1.5rem, 4vw, 3.2rem);
+}
+
+/* --- Header (name/role + cut-out photo) ----------------------------------- */
+/* min-height reserves vertical room so the figure fits with its head fully
+   visible and its feet resting on the divider */
+.cv-head { position: relative; z-index: 1; display: flex; align-items: center; min-height: 220px; }
+.cv-head__text { position: relative; z-index: 2; min-width: 0; padding-right: clamp(0px, 34vw, 430px); transform: translateY(-1.1rem); }
+.cv-head h1 {
+  font-size: clamp(2rem, 5.5vw, 3.4rem);
+  text-transform: uppercase; letter-spacing: -.01em; line-height: 1;
+  margin: 0 0 .55rem;
+}
+.cv-head .role {
+  font-weight: 800; font-size: clamp(.8rem, 1.4vw, .92rem);
+  letter-spacing: .14em; text-transform: uppercase; color: var(--accent-ink);
+  margin: 0 0 .7rem;
+}
+.cv-head .meta { font-size: .92rem; color: var(--muted); margin: 0; }
+
+/* Cut-out PNG: behind the text, in front of the divider, feet on the line,
+   growing upward so the head pokes above the card's top border */
+.cv-photo {
+  position: absolute; z-index: 1; pointer-events: none;
+  right: clamp(1rem, 6vw, 5rem);
+  bottom: -100px; top: auto;      /* visible feet land on the divider (PNG has transparent bottom) */
+  height: clamp(340px, 32vw, 450px); width: auto; max-width: 100%;
+}
+
+/* Divider hugs the figure's feet; equal air (= card padding) below it to the body */
+.cv-rule { position: relative; z-index: 0; border: 0; border-top: 1px solid var(--line);
+  margin: .6rem 0 clamp(1.5rem, 4vw, 3.2rem); }
+
+/* --- Grid: sidebar + main ------------------------------------------------- */
+.cv-grid {
+  position: relative; z-index: 2;      /* body sits above the photo's lower edge */
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: clamp(1.6rem, 4vw, 3.4rem);
+  align-items: start;
+}
+
+/* --- Shared: light, bold section headings --------------------------------- */
+.side-block > h3,
+.cv-block > h2,
+.cv-collapse__btn {
+  font-size: 1.06rem; font-weight: 800; letter-spacing: .01em;
+  text-transform: uppercase; color: var(--ink);
+}
+
+/* --- Sidebar -------------------------------------------------------------- */
+.cv-side { display: flex; flex-direction: column; gap: 1.6rem; }
+.side-block > h3 { margin: 0 0 1rem; }
+.side-block + .side-block { border-top: 1px solid var(--line); padding-top: 1.4rem; }
+
+.cv-contacts { display: flex; flex-direction: column; gap: .8rem; }
+.cv-contacts .item .k { display: block; font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--faint); margin-bottom: .12rem; }
+.cv-contacts .item a, .cv-contacts .item span.v { font-size: .92rem; color: var(--ink-soft); word-break: break-word; }
+.cv-contacts .item a:hover { color: var(--accent-2); }
+.cv-contacts .todo { color: var(--faint); font-style: italic; }
+
+/* Skills groups: sub-head + 5px chips */
+.skill-group + .skill-group { margin-top: 1.3rem; }
+.skill-group > h4 {
+  font-size: .74rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--accent-ink); margin: 0 0 .6rem;
+}
+
+/* Languages with segmented rating */
+.lang-item + .lang-item { margin-top: 1rem; }
+.lang-item .name { display: flex; justify-content: space-between; align-items: baseline; gap: .5rem; }
+.lang-item .name b { font-weight: 800; font-size: .98rem; }
+.lang-item .name em { font-style: normal; font-size: .8rem; color: var(--muted); }
+
+/* --- Main column ---------------------------------------------------------- */
+.cv-main { min-width: 0; }
+.cv-block + .cv-block { margin-top: 2.4rem; }
+.cv-block > h2 { margin-bottom: 1.3rem; }          /* no divider under headings */
+.cv-summary { font-size: clamp(1rem, 1.3vw, 1.1rem); line-height: 1.68; color: var(--ink-soft); max-width: 64ch; }
+
+/* --- Experience timeline -------------------------------------------------- */
+.job { position: relative; padding: 0 0 1.8rem 1.5rem; }
+.job::before { content: ""; position: absolute; left: 3.5px; top: .55rem; bottom: -.1rem; width: 1px; background: var(--line); }
+.job:last-child::before { bottom: auto; height: 1rem; }
+.job::after { content: ""; position: absolute; left: 0; top: .4rem; width: 8px; height: 8px; border-radius: 2px; background: var(--accent); }
+.job__head { display: flex; flex-wrap: wrap; gap: .1rem .7rem; align-items: baseline; }
+.job__title { font-size: 1.12rem; font-weight: 800; letter-spacing: -.01em; }
+.job__sub { width: 100%; font-size: .85rem; color: var(--muted); margin: .12rem 0 .1rem; }
+.job__sub .co { color: var(--accent-ink); font-weight: 700; }
+.job__bullets { margin-top: .5rem; display: flex; flex-direction: column; gap: .32rem; }
+.job__bullets li { position: relative; padding-left: 1rem; font-size: .92rem; color: var(--ink-soft); }
+.job__bullets li::before { content: ""; position: absolute; left: 0; top: .6em; width: 5px; height: 5px; border-radius: 1.5px; background: var(--muted); }
+.job__bullets strong { color: var(--ink); font-weight: 700; }   /* highlighted phrases: bold, body color */
+.job__win::before { background: var(--accent) !important; }
+.job__desc { font-size: .9rem; color: var(--muted); margin: .35rem 0 .55rem; }
+
+/* Collapsible jobs (AppScience / LUSH) — show only title + dates until opened */
+.job--collapsible .job__toggle {
+  width: 100%; background: none; border: 0; cursor: pointer; text-align: left;
+  font-family: var(--font-sans); color: var(--ink);
+  display: flex; align-items: flex-start; gap: 1rem; padding: 0;
+}
+.job--collapsible .job__toggle:hover .job__title { color: var(--accent-ink); }
+.job__headwrap { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: .1rem; }
+.job__chev {
+  margin-top: .2rem; width: 22px; height: 22px; flex: none; color: var(--muted);
+  background-color: currentColor;
+  -webkit-mask: var(--chevron) no-repeat center / 22px 22px;
+          mask: var(--chevron) no-repeat center / 22px 22px;
+  transform: rotate(180deg); transition: transform .35s var(--ease), color .2s var(--ease);
+}
+.job--collapsible.is-open .job__chev { transform: rotate(0deg); color: var(--accent); }
+.job__panel { overflow: hidden; height: 0; transition: height .38s var(--ease); }
+.job__panel-inner { padding-top: .6rem; }
+.job__subrole { display: flex; flex-wrap: wrap; gap: .1rem .6rem; align-items: baseline; margin: 1rem 0 .2rem; }
+.job__subrole b { font-weight: 700; font-size: .98rem; color: var(--ink); }
+.job__subrole .d { font-size: .8rem; color: var(--faint); }
+
+/* --- Collapsible blocks (Education / Additional) — animated like portfolio - */
+.cv-collapse { border-top: 1px solid var(--line); padding-top: 1.4rem; }
+.cv-collapse__btn {
+  width: 100%; background: none; border: 0; cursor: pointer; text-align: left;
+  font-family: var(--font-sans);
+  display: flex; align-items: center; gap: 1rem; padding: 0 0 0;
+}
+.cv-collapse__btn:hover { color: var(--accent-ink); }
+.cv-collapse__chev {
+  margin-left: auto; width: 22px; height: 22px; flex: none; color: var(--muted);
+  background-color: currentColor;
+  -webkit-mask: var(--chevron) no-repeat center / 22px 22px;
+          mask: var(--chevron) no-repeat center / 22px 22px;
+  transform: rotate(180deg);
+  transition: transform .35s var(--ease), color .2s var(--ease);
+}
+.cv-collapse.is-open .cv-collapse__chev { transform: rotate(0deg); color: var(--accent); }
+.cv-collapse__panel { overflow: hidden; height: 0; transition: height .38s var(--ease); }
+.cv-collapse__inner { padding: 1rem 0 0; }
+.cv-collapse__inner p { color: var(--ink-soft); }
+
+/* Education entries (single column — lives in the sidebar) */
+.edu-sub { font-size: .72rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-ink); margin: 1rem 0 .7rem; }
+.edu { padding: 0 0 1rem; }
+.edu:last-child { padding-bottom: 0; }
+.edu .when { font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); margin-bottom: .2rem; }
+.edu .what h5 { font-size: .95rem; font-weight: 700; margin: 0 0 .15rem; line-height: 1.25; color: var(--accent-ink); }
+.edu--plain .what h5 { color: var(--ink); }          /* ДПО / professional courses stay uncolored */
+.edu .what p { font-size: .84rem; color: var(--muted); margin: 0; }
+
+/* --- Responsive ----------------------------------------------------------- */
+@media (max-width: 860px) {
+  .cv-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .cv-head { min-height: 170px; }
+  .cv-head__text { padding-right: clamp(140px, 40vw, 240px); }
+  .cv-photo { height: clamp(300px, 42vw, 400px); bottom: -80px; }
+}
+@media (max-width: 560px) {
+  .cv-head { min-height: 0; display: block; }
+  .cv-head__text { padding-right: 0; transform: none; }
+  .cv-photo { position: static; height: auto; width: 170px; margin: 0 0 1rem auto; bottom: auto; }
+}
+
+@media print {
+  .cv-topbar { display: none; }
+  .cv-card { border: 0; box-shadow: none; padding: 0; overflow: visible; }
+  .cv-head { min-height: 0; display: block; }
+  .cv-photo { height: 190px; width: auto; bottom: 0; }
+  .cv-head__text { padding-right: 190px; }
+  .cv-head h1 { font-size: 24pt; }
+  .cv-collapse__panel { height: auto !important; }
+  .cv-collapse__chev { display: none; }
+  .job::after { background: var(--accent); }
+}
